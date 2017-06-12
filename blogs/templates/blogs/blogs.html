@@ -1,0 +1,46 @@
+{% load staticfiles %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'blogs/stylesheet/style.css' %}">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Kritsnam Technology</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li class=""><a href="/logout">Logout</a></li>
+      <li class="active"><a href="">Blogs</a></li>
+    </ul>
+  </div>
+</nav> 
+<strong>{{formdata}}</strong>
+<h1>
+    {{non}}
+</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+        <h3>Blogs</h3>
+        </div>
+    </div>
+    {% for blog in blogs %}
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="thumbnail">
+            <img class="img-responsive user-photo" src="{{blog.profile}}">
+            </div>
+        </div>
+        
+        <div class="col-sm-10">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>Topic : {{blog.topic}}</strong><br> 
+                    <span class="text-muted">Name : {{blog.name}}</</span>
+                </div>
+                <div class="panel-body">
+                    {{blog.content}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}        
+</div>
