@@ -33,20 +33,20 @@
     <div class="row">
 	    <div class="col-md-8 col-md-offset-2">
 			<div class="widget-area no-padding blank">
-				<form action="/add" method="POST">
+				<form action="/uploadblog" method="POST" name="form">
 					{% csrf_token %}
+					
+					<div class="alert alert-warning">
+					  <strong>{{ form.non_field_errors }}</strong>
+					</div>
 					<div class="status-upload">
 						<div class="form-group">
 						  <label for="usr">Name:</label>
-						  <input type="text" class="form-control" id="name" name="name" placeholder="Your name please"  required>
+						  <input type="text" class="form-control" id="name" name="name" value="{{user}}" readonly>
 						</div>
 						<div class="form-group">
 						  <label for="usr">Topic Name:</label>
 						  <input type="text" class="form-control" id="topic" name="topic" placeholder="Your topic please" required>
-						</div>
-						<div class="form-group">
-						  <label for="usr">Profile Image Link:</label>
-						  <input type="text" class="form-control" id="profile" name="profile" placeholder="Your profile image url" >
 						</div>
 						<textarea class="form-control" name="content" placeholder="What are you doing right now?"  required></textarea><br>
 					</div>

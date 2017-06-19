@@ -9,7 +9,12 @@ urlpatterns = [
 
     url(r'^blogs/(?P<blog_name>.+)/$', views.page),
 
-    url(r'^add',views.uploadblog,name='uploadblog'),
+    url(r'^uploadblog',views.uploadblog,name='uploadblog'),
+
+    url(r'^register',views.register,name='register'),
+
+    url(r'^bloggers/(?P<name>.+)/$',views.bloggers,name='bloggers'),
+
     url(r'^login',views.login_blog,name='login_blog'),
     url(r'^logout',views.logout_blog,name='logout_blog'),
 ]

@@ -8,7 +8,7 @@
     </div>
     <ul class="nav navbar-nav navbar-right">
       <li class=""><a href="/logout">Logout</a></li>
-      <li class="active"><a href="">Blogs</a></li>
+      <li class="active"><a href="/blogs">Blogs</a></li>
     </ul>
   </div>
 </nav> 
@@ -20,22 +20,68 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-2">
-            <div class="thumbnail">
-            <img class="img-responsive user-photo" src="{{single_blog.profile}}">
-            </div>
+        <div class="col-md-8">
+            <article>
+                <h1><a href="/blogs/{{single_blog.topic}}">{{single_blog.topic}}</a></h1>
+                <div class="row">
+                    <div class="col-sm-6 col-md-6">             
+                        &nbsp;&nbsp;<span class="glyphicon glyphicon-time"></span>{{single_blog.uploadtime}}
+                    </div>
+                </div>
+                  <hr>
+                  <img src="http://placehold.it/900x300" class="img-responsive">
+                  <br />
+                  <p class="lead">{{single_blog.content}}</p>
+                  <hr>
+            </article>              
         </div>
-        
-        <div class="col-sm-10">
+        <div class="col-md-4">
+            <!-- Latest Posts -->
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <strong>Topic : {{single_blog.topic}}</strong><br> 
-                    <span class="text-muted">Name : {{single_blog.name}}</</span>
+                    <h4>Latest Posts</h4>
+                </div>
+                <ul class="list-group">
+                {% for blog in latest %}
+                    <li class="list-group-item"><a href="/blogs/{{blog.topic}}">{{blog.name}} - {{blog.topic}}</a></li>
+                {% endfor %}
+                </ul>
+            </div>
+
+            <!-- Categories -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Categories</h4>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="#">Signs</a></li>
+                    <li class="list-group-item"><a href="#">Elements</a></li>
+                    <li class="list-group-item"><a href="#">Planets</a></li>
+                    <li class="list-group-item"><a href="#">Cusps</a></li>
+                    <li class="list-group-item"><a href="#">Compatibility</a></li>
+                </ul>
+            </div>
+
+            <!-- Tags -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Tags</h4>
                 </div>
                 <div class="panel-body">
-                    {{single_blog.content}}
+                    <ul class="list-inline">
+                        <li><a href="#">Aries</a></li>
+                        <li><a href="#">Fire</a></li>
+                        <li><a href="#">Mars</a></li>
+                        <li><a href="#">Taurus</a></li>
+                        <li><a href="#">Earth</a></li>
+                        <li><a href="#">Moon</a></li>
+                        <li><a href="#">Gemini</a></li>
+                        <li><a href="#">Air</a></li>
+                        <li><a href="#">Mercury</a></li>
+                        <li><a href="#">Cancer</a></li>
+                    </ul>
                 </div>
-            </div>
+             </div>
         </div>
     </div>
 </div>
