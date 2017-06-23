@@ -12,6 +12,9 @@ urlpatterns = [
     url(r'^uploadblog',views.uploadblog,name='uploadblog'),
 
     url(r'^register',views.register,name='register'),
+    url(r'^forgot$',views.forgot,name='forgot'),
+    url(r'^forgot/(?P<tokenw>.+)/$',views.forgotpage,name='forgotpage'),
+    url(r'^reset$',views.reset,name='reset'),
 
     url(r'^bloggers/(?P<name>.+)/$',views.bloggers,name='bloggers'),
 

@@ -35,10 +35,7 @@
 			<div class="widget-area no-padding blank">
 				<form action="/uploadblog" method="POST" name="form">
 					{% csrf_token %}
-					
-					<div class="alert alert-warning">
-					  <strong>{{ form.non_field_errors }}</strong>
-					</div>
+
 					<div class="status-upload">
 						<div class="form-group">
 						  <label for="usr">Name:</label>
@@ -48,13 +45,17 @@
 						  <label for="usr">Topic Name:</label>
 						  <input type="text" class="form-control" id="topic" name="topic" placeholder="Your topic please" required>
 						</div>
-						<textarea class="form-control" name="content" placeholder="What are you doing right now?"  required></textarea><br>
+						{{ form.content }}
+						<br>
 					</div>
 						<button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Submit</button>
 				</form>
 			</div>
 		</div>
     </div>
+	{% block head_extra %} 
+	    {{ form.media }}
+	{% endblock head_extra %}
     <div class="row">
     	{% for blog in blogs %}
     		<p>{{blog.name}}</p>

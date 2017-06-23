@@ -33,7 +33,7 @@
                         <span style="float: right;" class="text-muted">Uploaded On : {{blog.uploadtime}}</</span>
                     </div>
                     <div class="panel-body">
-                        {{blog.content}}
+                        {{blog.content|linebreaks|truncatechars:120}}
                     </div>
                 </div>
             {% endfor %}

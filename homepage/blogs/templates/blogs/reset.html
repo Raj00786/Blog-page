@@ -1,0 +1,26 @@
+{% load staticfiles %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'blogs/stylesheet/style.css' %}">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Kritsnam Technology</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li class=""><a href="/logout">Logout</a></li>
+      <li class="active"><a href="/blogs">Blogs</a></li>
+    </ul>
+  </div>
+</nav> 
+<div class="container">
+    <div id="menu1" class="tab-pane fade in active">
+        <form action="/reset" method="POST" class="form-signin">
+            {% csrf_token %}
+            <input type="password" class="form-control" placeholder="password" name="password" required autofocus>
+            <input type="password" class="form-control" placeholder="confirm password" name="confirm password" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">reset</button>   
+        </form>
+    </div>
+</div>
+
+
