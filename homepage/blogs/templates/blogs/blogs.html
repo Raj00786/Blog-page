@@ -1,4 +1,8 @@
 {% load staticfiles %}
+{% load markdown_deux_tags %}
+{% load taggit_templatetags2_tags %}
+
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="{% static 'blogs/stylesheet/style.css' %}">
 <nav class="navbar navbar-inverse">
@@ -28,11 +32,12 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <strong><a href="/blogs/{{blog.topic}}">Topic : {{blog.topic}}</a></strong><br> 
+                    <strong><p class="tags">Tags: {{ blog.tags.all|join:", " }}</p></strong>
                     <span class="text-muted">Name : {{blog.name}}</</span>
                     <span style="float: right;" class="text-muted">Uploaded On : {{blog.uploadtime}}</</span>
                 </div>
                 <div class="panel-body">
-                    {{ blog.content|linebreaks|truncatechars:120 }}
+                    {{ blog.content| markdown | linebreaks | truncatechars:120 }}
                 </div>
             </div>
         {% endfor %}        
@@ -45,9 +50,29 @@
                 <ul class="list-group">
                 {% for blogger in blogs %}
                     <li class="list-group-item"><a href="/bloggers/{{blogger.name}}">{{blogger.name}}</a></li>
-                {% endfor %}
+                 {% endfor %}
                 </ul>
             </div>
+           <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>Tags</h4>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-inline">
+                {% get_taglist as tags for 'blogs' %}
+                        {% for tag in tags %}
+                        <li>{{tag}} ({{tag.num_times}})</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% for tag in blogs.tags.all %}
+
+               <a href="{% url "blog:post_list_by_tag" tag.slug %}">{{ tag.name }}</a>
+
+               {% if not forloop.last %}, {% endif %}
+
+           {% endfor %}
         </div>
     </div>
 </div>

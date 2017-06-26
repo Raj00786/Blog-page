@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'rajkumarmeena259996@gmail.com'
-EMAIL_HOST_PASSWORD = 'techkriti'
+EMAIL_HOST_PASSWORD = 'password'
 EMAIL_PORT = 587
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
@@ -47,7 +47,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_markdown',
-    'pagedown'
+    'pagedown',
+    'markdown_deux',
+    'taggit',
+    'taggit_templatetags2'
 ]
 
 DISQUS_API_KEY = 'FOOBARFOOBARFOOBARFOOBARFOOBARF'

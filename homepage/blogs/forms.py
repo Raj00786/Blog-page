@@ -5,10 +5,10 @@ from django.utils import timezone
 from pagedown.widgets import PagedownWidget
 
 class blogform(forms.ModelForm):
-	content = forms.CharField(widget=PagedownWidget)
+	content = forms.CharField(widget=PagedownWidget())
 	class Meta:
 		model = Blogs
-		fields = ('name', 'topic', 'content')
+		fields = ('name', 'topic', 'content','tags')
 
 class registerform(ModelForm):
 	class Meta:

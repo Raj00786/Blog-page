@@ -8,6 +8,7 @@ from django.utils.html import urlencode
 from .forms import blogform,registerform
 from django.utils import timezone
 from django.utils.crypto import get_random_string
+from taggit.managers import TaggableManager
 
 
 # Create your views here.
@@ -15,7 +16,6 @@ def welcome(request):
 	if request.session.get('username'):
 		return render(request,'blogs/index.html',{'user':request.session['username'],'form':blogform()})
 	return render(request,'blogs/welcome.html',{})
-
 def page(request, blog_name):
 	latest = Blogs.objects.all()[:5]
 	tags=''
@@ -45,6 +45,7 @@ def uploadblog(request):
 			new_data = data.save(commit=False)
 			new_data.uploadtime = timezone.now()
 			new_data.save()
+			data.save_m2m()
 			return render(request,'blogs/index.html',{'message':'Blog added Successfully','user':request.session['username'],'form':blogform()})	
 		else:
 			return render(request,'blogs/index.html',{'form':data,'message':'','user':data.is_valid(),'form':blogform()})	

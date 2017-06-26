@@ -1,4 +1,5 @@
 from django.db import models
+from taggit.managers import TaggableManager
 
 
 class Blogs(models.Model):
@@ -6,7 +7,7 @@ class Blogs(models.Model):
 	topic = models.CharField(max_length=100)
 	content = models.TextField()
 	uploadtime = models.DateTimeField(default="nothing")
-
+	tags = TaggableManager()
 	def __str__(self):
 		return self.topic+'-'+self.name
 	

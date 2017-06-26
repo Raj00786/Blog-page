@@ -1,0 +1,59 @@
+{% load staticfiles %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'blogs/stylesheet/style.css' %}">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Kritsnam Technology</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li class=""><a href="/logout">Logout</a></li>
+      <li class="active"><a href="/blogs">Blogs</a></li>
+    </ul>
+  </div>
+</nav> 
+<strong>{{formdata}}</strong>
+<h1>
+    {{non}}
+</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+        <h3>Blog lists of {{blogger}}</h3>
+        </div>
+    </div>
+    <div class="row">     
+        <div class="col-md-8"> 
+        {% if blogs  %}   
+            {% for blog in blogs %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong><a href="/blogs/{{blog.topic}}">Topic : {{blog.topic}}</a></strong><br> 
+                        <span class="text-muted">Name : {{blog.name}}</</span>
+                        <span style="float: right;" class="text-muted">Uploaded On : {{blog.uploadtime}}</</span>
+                    </div>
+                    <div class="panel-body">
+                        {{blog.content|linebreaks|truncatechars:120}}
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="alert alert-success">
+              <strong>No blogs uploaded by {{blogger}} .......</strong>
+            </div>
+        {% endif %}    
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>New Bloggers</h4>
+                </div>
+                <ul class="list-group">
+                {% for blogger in bloglist %}
+                    <li class="list-group-item"><a href="/bloggers/{{blogger.name}}">{{blogger.name}}</a></li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
