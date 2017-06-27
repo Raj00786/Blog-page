@@ -10,6 +10,7 @@ class blogform(forms.ModelForm):
 		model = Blogs
 		fields = ('name', 'topic', 'content','tags')
 
+
 class registerform(ModelForm):
 	class Meta:
 		model = Register

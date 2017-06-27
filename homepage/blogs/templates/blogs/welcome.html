@@ -34,7 +34,7 @@
             <div id="menu1" class="tab-pane fade in active">
                 <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
                     alt="">
-                <form action="/login_blog" method="POST" class="form-signin">
+                <form onsubmit="return loginForm()"  name="login" action="/login_blog" method="POST" class="form-signin">
                     {% csrf_token %}
                     <input type="text" class="form-control" placeholder="username" name="username" required autofocus>
                     <input type="password" class="form-control" placeholder="Password" name="password" required>
@@ -44,7 +44,7 @@
             <div id="menu2" class="tab-pane fade">
                 <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
                     alt="">
-                <form action="/register" method="POST" class="form-signin">
+                <form onsubmit="return registerForm()" name="register" action="/register" method="POST" class="form-signin">
                     {% csrf_token %}
                     <input type="text" class="form-control" placeholder="First Name" name="firstname" required autofocus>
                     <input type="text" class="form-control" placeholder="Last Name" name="lastname" required autofocus>
@@ -57,7 +57,7 @@
             <div id="menu3" class="tab-pane fade">
                 <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
                     alt="">
-                <form action="/forgot" method="POST" class="form-signin">
+                <form onsubmit="return forgotForm()" name="forgot" action="/forgot" method="POST" class="form-signin">
                     {% csrf_token %}
                     <input type="text" class="form-control" placeholder="Your registered email id" name="email" required autofocus><br>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Send Verification mail</button>
@@ -67,8 +67,62 @@
     </div>
 </div>
 
-
-
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    function loginForm(event){
+        var error='';
+        var username=document.login.username.value;
+        var password=document.login.password.value;  
+        if(username==''||username==null||password==''||password==null){
+            error += 'fields can"t be left blank.\n';
+        }
+        if(/^[a-zA-Z0-9]*$/.test(username) == false) {
+            error+='Your search string contains illegal characters.\n';
+        }
+        console.log(error);
+        if(error){
+            window.alert(error);
+            return false;
+        }
+    }
+    function registerForm(event){
+        var error='';
+        var letters = /^[a-zA-Z0-9]*$/;  
+        var firstname=document.register.firstname.value;
+        var lastname=document.register.lastname.value;
+        var email=document.register.email.value;
+        var username=document.register.username.value;
+        var password=document.register.password.value;  
+        if(username==''||username==null||password==''||password==null||email==''||email==null||firstname==''||firstname==null||lastname==null||lastname==''){
+            error += 'fields can"t be left blank.\n';
+        }
+        if(/^[a-zA-Z0-9- ]*$/.test(username) == false) {
+            error+='username should not contains illegal characters.\n';
+        }
+
+        if(((/^[a-zA-Z0-9- ]*$/.test(firstname) == false))||(/^[a-zA-Z0-9- ]*$/.test(lastname) == false)) {
+            error+='firstname and lastname should contains only alphbets.\n';
+        }
+        if(error){
+            window.alert(error);
+            return false;
+        }
+    }
+    function forgotForm(event){
+        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        var error='';
+        var email=document.forgot.email.value;
+        if(email==''||email==null){
+            error += 'fields can"t be left blank.\n';
+        }
+        if(reg.test(email) == false) {
+            error+='Please enter valid email id.\n';
+        }
+        console.log(error);
+        if(error){
+            window.alert(error);
+            return false;
+        }
+    }
+</script>

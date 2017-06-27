@@ -17,6 +17,8 @@ urlpatterns = [
     url(r'^reset$',views.reset,name='reset'),
 
     url(r'^bloggers/(?P<name>.+)/$',views.bloggers,name='bloggers'),
+    
+    url(r'^tags/(?P<tag>.+)/$',views.taggedpage,name='taggedpage'),
 
     url(r'^login',views.login_blog,name='login_blog'),
     url(r'^logout',views.logout_blog,name='logout_blog'),

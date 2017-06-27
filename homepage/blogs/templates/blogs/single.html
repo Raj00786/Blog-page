@@ -1,4 +1,7 @@
 {% load staticfiles %}
+{% load markdown_deux_tags %}
+{% load taggit_templatetags2_tags %}
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="{% static 'blogs/stylesheet/style.css' %}">
 <nav class="navbar navbar-inverse">
@@ -28,9 +31,8 @@
                     </div>
                 </div>
                   <hr>
-                  <img src="http://placehold.it/900x300" class="img-responsive">
                   <br />
-                  <p class="lead">{{single_blog.content}}</p>
+                  <p class="lead">{{single_blog.content | markdown}}</p>
                   <hr>
             </article>              
         </div>
@@ -48,7 +50,7 @@
             </div>
 
             <!-- Categories -->
-            <div class="panel panel-default">
+<!--             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4>Categories</h4>
                 </div>
@@ -60,27 +62,24 @@
                     <li class="list-group-item"><a href="#">Compatibility</a></li>
                 </ul>
             </div>
-
-            <!-- Tags -->
-            <div class="panel panel-default">
+ -->
+             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4>Tags</h4>
                 </div>
+                
                 <div class="panel-body">
                     <ul class="list-inline">
-                        <li><a href="#">Aries</a></li>
-                        <li><a href="#">Fire</a></li>
-                        <li><a href="#">Mars</a></li>
-                        <li><a href="#">Taurus</a></li>
-                        <li><a href="#">Earth</a></li>
-                        <li><a href="#">Moon</a></li>
-                        <li><a href="#">Gemini</a></li>
-                        <li><a href="#">Air</a></li>
-                        <li><a href="#">Mercury</a></li>
-                        <li><a href="#">Cancer</a></li>
+                    {% get_taglist as tags for 'blogs' %}
+
+                        {% for tag in tags %}
+                        <li><a href="/tags/{{tag}}">{{tag}} ({{tag.num_times}})</a></li>
+                        {% endfor %}
+                    
+                    
                     </ul>
                 </div>
-             </div>
+            </div>
         </div>
     </div>
 </div>

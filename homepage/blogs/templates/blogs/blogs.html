@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class="row">     
-        <div class="col-sm-8">
+        <div class="col-sm-12 col-md-8">
         {% for blog in blogs %}
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -37,12 +37,12 @@
                     <span style="float: right;" class="text-muted">Uploaded On : {{blog.uploadtime}}</</span>
                 </div>
                 <div class="panel-body">
-                    {{ blog.content| markdown | linebreaks | truncatechars:120 }}
+                    {{ blog.content| markdown | linebreaks | truncatechars:250 }}
                 </div>
             </div>
         {% endfor %}        
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4>New Bloggers</h4>
@@ -57,22 +57,18 @@
                 <div class="panel-heading">
                     <h4>Tags</h4>
                 </div>
+                
                 <div class="panel-body">
                     <ul class="list-inline">
-                {% get_taglist as tags for 'blogs' %}
+                    {% get_taglist as tags for 'blogs' %}
+
                         {% for tag in tags %}
-                        <li>{{tag}} ({{tag.num_times}})</li>
+                        <li><a href="/tags/{{tag}}">{{tag}} ({{tag.num_times}})</a></li>
                         {% endfor %}
+                    
                     </ul>
                 </div>
             </div>
-            {% for tag in blogs.tags.all %}
-
-               <a href="{% url "blog:post_list_by_tag" tag.slug %}">{{ tag.name }}</a>
-
-               {% if not forloop.last %}, {% endif %}
-
-           {% endfor %}
         </div>
     </div>
 </div>

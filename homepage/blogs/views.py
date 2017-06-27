@@ -16,12 +16,18 @@ def welcome(request):
 	if request.session.get('username'):
 		return render(request,'blogs/index.html',{'user':request.session['username'],'form':blogform()})
 	return render(request,'blogs/welcome.html',{})
+
 def page(request, blog_name):
 	latest = Blogs.objects.all()[:5]
 	tags=''
 	category=''
+	all_blogs = Blogs.objects.all()
 	single_blog = Blogs.objects.get(topic=blog_name);
-	return render(request,'blogs/single.html',{'single_blog':single_blog,'latest':latest,'tags':tags,'category':category})
+	return render(request,'blogs/single.html',{'single_blog':single_blog,'latest':latest,'tags':tags,'category':category,'blogs':all_blogs})
+
+def taggedpage(request,tag):
+	taggpost = Blogs.objects.filter(tags__name__in=[tag]);
+	return render(request,'blogs/tagpost.html',{'blogs':taggpost,'tag':tag})
 
 def index(request):
 	if request.session.get('username'):
