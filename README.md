@@ -15,10 +15,14 @@ completed on 18th june
 
 ## Updated textarea to write blogs,email confirmations,reset password
 
-will be completed before 23th june
+completed  23th june
+
+## Updated form validation
+
+completed 
 
 
 ## Will be adding Disqus for commenting on blogs
 
-will be completed before  ---
+adding soon  ---
 
