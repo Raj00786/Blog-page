@@ -37,7 +37,7 @@
                     <span style="float: right;" class="text-muted">Uploaded On : {{blog.uploadtime}}</</span>
                 </div>
                 <div class="panel-body">
-                    {{ blog.content| markdown | linebreaks | truncatechars:250 }}
+                    {{ blog.content| markdown |truncatewords:20 }}
                 </div>
             </div>
         {% endfor %}        
@@ -72,3 +72,9 @@
         </div>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('.panel-body img').css('display','none')
+    });
+</script>

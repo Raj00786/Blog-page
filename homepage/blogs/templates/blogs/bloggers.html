@@ -1,4 +1,7 @@
 {% load staticfiles %}
+{% load markdown_deux_tags %}
+{% load taggit_templatetags2_tags %}
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="{% static 'blogs/stylesheet/style.css' %}">
 <nav class="navbar navbar-inverse">
@@ -33,7 +36,7 @@
                         <span style="float: right;" class="text-muted">Uploaded On : {{blog.uploadtime}}</</span>
                     </div>
                     <div class="panel-body">
-                        {{blog.content|linebreaks|truncatechars:120}}
+                        {{ blog.content| markdown |truncatewords:20 }}
                     </div>
                 </div>
             {% endfor %}
@@ -57,3 +60,10 @@
         </div>
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('.panel-body img').css('display','none')
+    });
+</script>

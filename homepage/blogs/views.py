@@ -36,7 +36,7 @@ def index(request):
 		return redirect("/",{})	
 
 def blogs(request):
-		all_blogs = Blogs.objects.all();
+		all_blogs = Blogs.objects.all().order_by('-pk');
 		return render(request,'blogs/blogs.html',{'blogs':all_blogs})
 
 def bloggers(request,name):
